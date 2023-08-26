@@ -31,18 +31,26 @@ class AuthController extends Controller
 
         auth()->login($user);
 
-        return response()->json(['error_status' => false, 'user' => $user]);
+        return response()->json(['error_status' => false]);
     }
 
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|max:255'
+            'email' => 'required|string|email',
+            'password' => 'required|string|min:6',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['error_status' => true, 'errors' => $validator->errors()]);
+        }
+
+        $user = User::where('email', $request->email)->first();
+        if ($user && Hash::check($request->password, $user->password)) {
+            auth()->login($user);
+            return response()->json(['error_status' => false]);
+        } else {
+            return response()->json(['error_status' => true, 'errors' => ['password' => 'Invalid credentials']]);
         }
     }
 

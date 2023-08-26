@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+// home
+Route::get('/', [StripeController::class, 'products'])->name('home');
 
+// auth
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+// stripe
+// Route::get('/products', [StripeController::class, 'products'])->name('products');
+Route::get('/checkout/{product_id}/{price_id}', [StripeController::class, 'createCheckoutSession'])->name('checkout');
+Route::get('/checkout-completed/{product_id}/{price_id}', [StripeController::class, 'checkoutCompleted'])->name('checkoutCompleted');
