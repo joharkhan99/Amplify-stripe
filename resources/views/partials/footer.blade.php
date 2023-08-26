@@ -12,8 +12,8 @@
 
       <div>
         <div class="flex gap-10 items-center">
-          <a href="dd" class="text-gray-600 text-sm hover:text-gray-900">Log in</a>
-          <a href="dd" class="text-gray-600 text-sm hover:text-gray-900">Get started</a>
+          <button class="text-gray-600 text-sm hover:text-gray-900 openModalButton">Log in</button>
+          <button class="text-gray-600 text-sm hover:text-gray-900 openModalButton">Get started</button>
         </div>
       </div>
 

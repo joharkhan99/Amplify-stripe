@@ -5,4 +5,25 @@
 * {
   font-family: 'Poppins', sans-serif;
 }
+
+
+/* Tab Content */
+.tab-content {
+  display: none;
+}
+
+/* Active Tab Content */
+.active {
+  display: block;
+}
+
+/* Tab Buttons */
+.tab-button {
+  /* cursor: pointer;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px; */
+}
 </style>
